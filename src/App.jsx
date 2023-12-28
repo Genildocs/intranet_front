@@ -1,15 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ButtonTheme from './components/ButtonTheme';
 import { DarkModeContext } from './context/DarkMode';
+import api from './services/api';
+import Home from './pages/Home';
 
 export default function App() {
   const { theme } = useContext(DarkModeContext);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    api.getPosts().then((response) => {
+      setPosts(response.data);
+    });
+  }, []);
+
   return (
     <div className={theme}>
       <ButtonTheme />
-      <h1>Intranet Project</h1>
-      <p>Projeto com integração de api node/express</p>
-      <p>Com autenticação de usuario</p>
+      <Home posts={posts} />
     </div>
   );
 }
