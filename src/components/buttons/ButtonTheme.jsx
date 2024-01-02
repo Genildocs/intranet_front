@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { DarkModeContext } from '../context/DarkMode.jsx';
+import { useContext } from 'react';
+import { DarkModeContext } from '../../context/DarkMode.jsx';
 
 export default function ButtonTheme() {
   const { theme, toggleTheme } = useContext(DarkModeContext);
